@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 function Navbar() {
   const activeStyle = "underline underline-offset-4";
   return (
-    <nav className="flex h-16 items-center justify-between px-12 fixed top-0 left-0 w-full bg-white text-[#495057]">
+    <nav className="flex h-16 items-center justify-between px-12 fixed top-0 left-0 w-full bg-white text-[#495057] z-50">
       <ul className="flex gap-3 items-center">
         <li className="font-semibold text-lg text-[#212529]">
           <NavLink to="/">Shopi</NavLink>

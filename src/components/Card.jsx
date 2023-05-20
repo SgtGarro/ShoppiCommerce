@@ -1,14 +1,15 @@
-function Card() {
+import PropTypes from "prop-types";
+function Card({ title, price, categoryName, image }) {
   return (
-    <div className="w-56 h-60 bg-white cursor-pointer">
-      <figure className="relative w-full h-4/5">
+    <div className="w-full h-60 bg-white">
+      <figure className="relative w-full h-4/5 cursor-pointer">
         <img
           className="rounded-lg w-full h-full object-cover"
-          src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-          alt="Product image"
+          src={image}
+          alt={title}
         />
         <span className="absolute left-2 bottom-2 text-sm bg-gray-100 px-3 rounded-md font-bold">
-          Category
+          {categoryName}
         </span>
         <button
           type="button"
@@ -33,11 +34,17 @@ function Card() {
         </button>
       </figure>
       <div className="flex mt-2 items-center justify-between">
-        <span className="font-normal">Product name</span>
-        <span className="font-bold text-lg">$000</span>
+        <span className="font-normal">{title}</span>
+        <span className="font-bold text-lg">${price}</span>
       </div>
     </div>
   );
 }
+Card.propTypes = {
+  title: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  categoryName: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+};
 
 export default Card;
