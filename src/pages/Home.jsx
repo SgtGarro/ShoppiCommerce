@@ -14,13 +14,7 @@ function Home() {
   return (
     <LayoutProducts>
       {items?.map((item) => (
-        <Card
-          key={item.id}
-          title={item.title}
-          price={item.price}
-          categoryName={item.category.name}
-          image={item.images[0]}
-        />
+        <Card key={item.id} data={item} />
       ))}
     </LayoutProducts>
   );

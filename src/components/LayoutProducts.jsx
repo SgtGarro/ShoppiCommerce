@@ -8,6 +8,6 @@ function LayoutProducts({ children }) {
 }
 
 LayoutProducts.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.array,
 };
 export default LayoutProducts;
