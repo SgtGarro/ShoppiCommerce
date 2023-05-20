@@ -1,4 +1,5 @@
 import { BrowserRouter, useRoutes } from "react-router-dom";
+import Card from "../components/Card";
 import Layout from "../components/Layout";
 import Navbar from "../components/Navbar";
 import Home from "./Home";
@@ -27,6 +28,7 @@ const App = function () {
         <Navbar />
         <Layout>
           <AppRoutes />
+          <Card></Card>
         </Layout>
       </BrowserRouter>
     </>
