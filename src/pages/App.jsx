@@ -1,4 +1,5 @@
 import { BrowserRouter, useRoutes } from "react-router-dom";
+import Layout from "../components/Layout";
 import Navbar from "../components/Navbar";
 import Home from "./Home";
 import MyAccount from "./MyAccount";
@@ -24,9 +25,9 @@ const App = function () {
     <>
       <BrowserRouter>
         <Navbar />
-        <div className="container mx-auto">
+        <Layout>
           <AppRoutes />
-        </div>
+        </Layout>
       </BrowserRouter>
     </>
   );
