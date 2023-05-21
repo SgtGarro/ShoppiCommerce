@@ -3,19 +3,35 @@ import PropTypes from "prop-types";
 import React from "react";
 import { ShoppingCartContext } from "../context";
 function Card({ data }) {
-  const { addProduct, openProductDetail, setProductToShow } =
-    React.useContext(ShoppingCartContext);
+  const {
+    addProduct,
+    openProductDetail,
+    closeProductDetail,
+    setProductToShow,
+    openCheckoutSideMenu,
+    closeCheckoutSideMenu,
+  } = React.useContext(ShoppingCartContext);
 
   const showProduct = function (event) {
     const btn = event.target.closest(".btn--add");
     if (btn) return;
     setProductToShow(data);
     openProductDetail();
+    closeCheckoutSideMenu();
+  };
+
+  const onAddToCart = function (data) {
+    addProduct(data);
+    openCheckoutSideMenu();
+    closeProductDetail();
   };
 
   return (
-    <div className="w-full min-h-[15rem] h-fit bg-white" onClick={showProduct}>
-      <figure className="relative w-full h-4/5 cursor-pointer">
+    <div className="w-full min-h-[15rem] h-fit bg-white">
+      <figure
+        className="relative w-full h-4/5 cursor-pointer"
+        onClick={showProduct}
+      >
         <img
           className="rounded-lg w-full h-full object-cover"
           src={data.images[0]}
@@ -27,9 +43,7 @@ function Card({ data }) {
         <button
           type="button"
           className="btn--add absolute top-2 right-2 p-1 bg-white rounded-full transition-all duration-300 ease-out hover:scale-110"
-          onClick={() => {
-            addProduct(data);
-          }}
+          onClick={() => onAddToCart(data)}
         >
           <PlusIcon className="w-5 h-5" />
         </button>

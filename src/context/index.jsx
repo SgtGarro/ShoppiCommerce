@@ -10,20 +10,23 @@ export const ShoppingCartProvider = function ({ children }) {
   // Shopping Cart · Quantity
   const counter = cart.length;
 
-  // Product Detail · Open/Close
-  const [isProductOpen, setIsProductOpen] = React.useState(false);
-  const openProductDetail = () => setIsProductOpen(true);
-  const closeProductDetail = () => setIsProductOpen(false);
+  // Shopping Cart · Add Products to cart
+  const addProduct = function (product) {
+    setCart([...cart, product]);
+  };
 
   // Product Detail · Show Product
   const [productToShow, setProductToShow] = React.useState({});
 
-  // Shopping Cart · Add Products to array
-  const addProduct = function (product) {
-    const newCart = [...cart];
-    newCart.push(product);
-    setCart(newCart);
-  };
+  // Product Detail · Open/Close
+  const [isProductOpen, setIsProductOpen] = React.useState(false);
+  const openProductDetail = () => setIsProductOpen(true);
+  const closeProductDetail = () => setIsProductOpen(false);
+  // Checkout Side Menu · Open/Close
+  const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] =
+    React.useState(false);
+  const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true);
+  const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false);
 
   return (
     <ShoppingCartContext.Provider
@@ -36,6 +39,10 @@ export const ShoppingCartProvider = function ({ children }) {
         closeProductDetail,
         productToShow,
         setProductToShow,
+        isCheckoutSideMenuOpen,
+        setIsCheckoutSideMenuOpen,
+        openCheckoutSideMenu,
+        closeCheckoutSideMenu,
       }}
     >
       {children}
