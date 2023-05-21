@@ -26,6 +26,7 @@ function Card({ data }) {
   };
 
   const onAddToCart = function (data) {
+    if (isInCart()) return;
     addProduct(data);
     openCheckoutSideMenu();
     closeProductDetail();

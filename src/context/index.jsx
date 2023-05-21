@@ -21,6 +21,14 @@ export const ShoppingCartProvider = function ({ children }) {
     setCart(filteredCart);
   };
 
+  // Shopping Cart · Increment Product quantity
+  const incrementProduct = function (id) {
+    const newCart = [...cart];
+    const product = newCart.find((prod) => prod.id === id);
+    product.quantity += 1;
+    setCart(newCart);
+  };
+
   // Product Detail · Show Product
   const [productToShow, setProductToShow] = React.useState({});
 
@@ -39,6 +47,7 @@ export const ShoppingCartProvider = function ({ children }) {
       value={{
         addProduct,
         deleteProduct,
+        incrementProduct,
         counter,
         cart,
         isProductOpen,
