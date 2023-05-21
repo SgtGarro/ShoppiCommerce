@@ -1,3 +1,4 @@
+import { ShoppingBagIcon } from "@heroicons/react/24/outline";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { ShoppingCartContext } from "../context";
@@ -86,7 +87,12 @@ function Navbar() {
             Sign in
           </NavLink>
         </li>
-        <li>{counter}</li>
+        <li className="relative">
+          <ShoppingBagIcon className="w-6 h-6" />
+          <span className="absolute top-0 right-0 text-white bg-[#495057] rounded-full text-sm w-5 h-5 grid place-items-center leading-none translate-x-1/2 -translate-y-1/3">
+            {counter}
+          </span>
+        </li>
       </ul>
     </nav>
   );

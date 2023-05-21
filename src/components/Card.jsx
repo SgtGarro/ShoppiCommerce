@@ -1,3 +1,4 @@
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import PropTypes from "prop-types";
 import React from "react";
 import { ShoppingCartContext } from "../context";
@@ -16,28 +17,13 @@ function Card({ data }) {
         </span>
         <button
           type="button"
-          className="absolute top-2 right-2 p-1 bg-white rounded-full"
+          className="absolute top-2 right-2 p-1 bg-white rounded-full transition-all duration-300 ease-out hover:scale-110"
           onClick={() => {
             addProduct(data);
             console.log(cart);
           }}
         >
-          <span className="leading-none">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-4 h-4"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 4.5v15m7.5-7.5h-15"
-              />
-            </svg>
-          </span>
+          <XMarkIcon className="w-5 h-5" />
         </button>
       </figure>
       <div className="flex mt-2 items-start justify-between gap-2">

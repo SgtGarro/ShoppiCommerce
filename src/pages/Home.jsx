@@ -1,6 +1,7 @@
 import React from "react";
 
 import Card from "../components/Card";
+import Layout from "../components/Layout";
 import LayoutProducts from "../components/LayoutProducts";
 
 function Home() {
@@ -12,11 +13,13 @@ function Home() {
       .then(setItems);
   }, []);
   return (
-    <LayoutProducts>
-      {items?.map((item) => (
-        <Card key={item.id} data={item} />
-      ))}
-    </LayoutProducts>
+    <Layout>
+      <LayoutProducts>
+        {items?.map((item) => (
+          <Card key={item.id} data={item} />
+        ))}
+      </LayoutProducts>
+    </Layout>
   );
 }
 
