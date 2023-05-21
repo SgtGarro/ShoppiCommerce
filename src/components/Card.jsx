@@ -1,11 +1,18 @@
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import { PlusIcon } from "@heroicons/react/24/outline";
 import PropTypes from "prop-types";
 import React from "react";
 import { ShoppingCartContext } from "../context";
 function Card({ data }) {
-  const { addProduct, cart } = React.useContext(ShoppingCartContext);
+  const { addProduct, openProductDetail } =
+    React.useContext(ShoppingCartContext);
   return (
-    <div className="w-full min-h-[15rem] h-fit bg-white">
+    <div
+      className="w-full min-h-[15rem] h-fit bg-white"
+      onClick={(event) => {
+        const btn = event.target.closest(".btn--add");
+        if (!btn) openProductDetail();
+      }}
+    >
       <figure className="relative w-full h-4/5 cursor-pointer">
         <img
           className="rounded-lg w-full h-full object-cover"
@@ -17,13 +24,12 @@ function Card({ data }) {
         </span>
         <button
           type="button"
-          className="absolute top-2 right-2 p-1 bg-white rounded-full transition-all duration-300 ease-out hover:scale-110"
+          className="btn--add absolute top-2 right-2 p-1 bg-white rounded-full transition-all duration-300 ease-out hover:scale-110"
           onClick={() => {
             addProduct(data);
-            console.log(cart);
           }}
         >
-          <XMarkIcon className="w-5 h-5" />
+          <PlusIcon className="w-5 h-5" />
         </button>
       </figure>
       <div className="flex mt-2 items-start justify-between gap-2">

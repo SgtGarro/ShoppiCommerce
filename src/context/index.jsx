@@ -5,6 +5,10 @@ export const ShoppingCartContext = React.createContext();
 
 export const ShoppingCartProvider = function ({ children }) {
   const [cart, setCart] = React.useState([]);
+  const [isProductOpen, setIsProductOpen] = React.useState(false);
+
+  const openProductDetail = () => setIsProductOpen(true);
+  const closeProductDetail = () => setIsProductOpen(false);
 
   const counter = cart.length;
 
@@ -20,6 +24,9 @@ export const ShoppingCartProvider = function ({ children }) {
         addProduct,
         counter,
         cart,
+        isProductOpen,
+        openProductDetail,
+        closeProductDetail,
       }}
     >
       {children}
