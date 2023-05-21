@@ -3,16 +3,18 @@ import PropTypes from "prop-types";
 import React from "react";
 import { ShoppingCartContext } from "../context";
 function Card({ data }) {
-  const { addProduct, openProductDetail } =
+  const { addProduct, openProductDetail, setProductToShow } =
     React.useContext(ShoppingCartContext);
+
+  const showProduct = function (event) {
+    const btn = event.target.closest(".btn--add");
+    if (btn) return;
+    setProductToShow(data);
+    openProductDetail();
+  };
+
   return (
-    <div
-      className="w-full min-h-[15rem] h-fit bg-white"
-      onClick={(event) => {
-        const btn = event.target.closest(".btn--add");
-        if (!btn) openProductDetail();
-      }}
-    >
+    <div className="w-full min-h-[15rem] h-fit bg-white" onClick={showProduct}>
       <figure className="relative w-full h-4/5 cursor-pointer">
         <img
           className="rounded-lg w-full h-full object-cover"

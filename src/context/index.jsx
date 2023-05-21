@@ -4,14 +4,21 @@ import React from "react";
 export const ShoppingCartContext = React.createContext();
 
 export const ShoppingCartProvider = function ({ children }) {
+  // Shopping Cart · Products
   const [cart, setCart] = React.useState([]);
-  const [isProductOpen, setIsProductOpen] = React.useState(false);
 
+  // Shopping Cart · Quantity
+  const counter = cart.length;
+
+  // Product Detail · Open/Close
+  const [isProductOpen, setIsProductOpen] = React.useState(false);
   const openProductDetail = () => setIsProductOpen(true);
   const closeProductDetail = () => setIsProductOpen(false);
 
-  const counter = cart.length;
+  // Product Detail · Show Product
+  const [productToShow, setProductToShow] = React.useState({});
 
+  // Shopping Cart · Add Products to array
   const addProduct = function (product) {
     const newCart = [...cart];
     newCart.push(product);
@@ -27,6 +34,8 @@ export const ShoppingCartProvider = function ({ children }) {
         isProductOpen,
         openProductDetail,
         closeProductDetail,
+        productToShow,
+        setProductToShow,
       }}
     >
       {children}
