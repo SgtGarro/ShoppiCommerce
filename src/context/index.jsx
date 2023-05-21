@@ -15,6 +15,12 @@ export const ShoppingCartProvider = function ({ children }) {
     setCart([...cart, product]);
   };
 
+  // Shopping Cart · Delete Products from cart
+  const deleteProduct = function (id) {
+    const filteredCart = cart.filter((product) => product.id !== id);
+    setCart(filteredCart);
+  };
+
   // Product Detail · Show Product
   const [productToShow, setProductToShow] = React.useState({});
 
@@ -32,6 +38,7 @@ export const ShoppingCartProvider = function ({ children }) {
     <ShoppingCartContext.Provider
       value={{
         addProduct,
+        deleteProduct,
         counter,
         cart,
         isProductOpen,
