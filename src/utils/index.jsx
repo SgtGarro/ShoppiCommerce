@@ -4,6 +4,9 @@
  * @returns {number}
  */
 export const totalPrice = function (products) {
-  const total = products.reduce((prev, cur) => prev + cur.price, 0);
+  const total = products.reduce(
+    (prev, cur) => prev + cur.price * cur.quantity,
+    0
+  );
   return total;
 };

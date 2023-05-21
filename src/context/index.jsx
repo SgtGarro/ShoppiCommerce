@@ -25,7 +25,16 @@ export const ShoppingCartProvider = function ({ children }) {
   const incrementProduct = function (id) {
     const newCart = [...cart];
     const product = newCart.find((prod) => prod.id === id);
-    product.quantity += 1;
+    product.quantity++;
+    setCart(newCart);
+  };
+
+  const decrementProduct = function (id) {
+    const newCart = [...cart];
+    const product = newCart.find((prod) => prod.id === id);
+    if (product.quantity === 1) return;
+    if (product.quantity < 1) product.quantity = 1;
+    else product.quantity--;
     setCart(newCart);
   };
 
@@ -48,6 +57,7 @@ export const ShoppingCartProvider = function ({ children }) {
         addProduct,
         deleteProduct,
         incrementProduct,
+        decrementProduct,
         counter,
         cart,
         isProductOpen,

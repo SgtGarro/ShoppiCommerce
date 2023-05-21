@@ -27,7 +27,7 @@ function Card({ data }) {
 
   const onAddToCart = function (data) {
     if (isInCart()) return;
-    addProduct(data);
+    addProduct({ ...data, quantity: 1 });
     openCheckoutSideMenu();
     closeProductDetail();
   };

@@ -3,18 +3,9 @@ import PropTypes from "prop-types";
 import React from "react";
 import { ShoppingCartContext } from "../context";
 
-function OrderCard({ id, img, title, price }) {
-  const { deleteProduct } = React.useContext(ShoppingCartContext);
-  const [quantity, setQuantity] = React.useState(1);
-
-  const increment = function () {
-    setQuantity(quantity + 1);
-  };
-  const decrement = function () {
-    if (quantity === 1) return;
-    if (quantity < 1) setQuantity(1);
-    else setQuantity(quantity - 1);
-  };
+function OrderCard({ id, img, title, price, quantity }) {
+  const { deleteProduct, incrementProduct, decrementProduct } =
+    React.useContext(ShoppingCartContext);
 
   return (
     <div className="flex items-center gap-4">
@@ -29,14 +20,14 @@ function OrderCard({ id, img, title, price }) {
         <div className="flex items-center gap-1">
           <div
             className="cursor-pointer p-1 bg-red-500 text-white rounded-"
-            onClick={decrement}
+            onClick={() => decrementProduct(id)}
           >
             <MinusIcon className="w-3 h-3" />
           </div>
           <div>{quantity}</div>
           <div
             className="cursor-pointer p-1 bg-gray-700 text-white rounded-"
-            onClick={increment}
+            onClick={() => incrementProduct(id)}
           >
             <PlusIcon className="w-3 h-3" />
           </div>
@@ -55,6 +46,7 @@ OrderCard.propTypes = {
   img: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
+  quantity: PropTypes.number.isRequired,
 };
 
 export default OrderCard;

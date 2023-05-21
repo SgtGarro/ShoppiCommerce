@@ -27,6 +27,7 @@ function CheckoutSideMenu() {
             price={product.price}
             title={product.title}
             img={product.images?.[0]}
+            quantity={product.quantity}
           />
         ))}
       </div>

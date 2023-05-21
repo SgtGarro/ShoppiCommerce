@@ -10,7 +10,13 @@ function Home() {
   React.useEffect(() => {
     fetch("https://api.escuelajs.co/api/v1/products")
       .then((response) => response.json())
-      .then(setItems);
+      .then((data) =>
+        setItems(
+          data.map((prod) => {
+            return { ...prod, quantity: 0 };
+          })
+        )
+      );
   }, []);
   return (
     <Layout>
