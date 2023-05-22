@@ -21,7 +21,7 @@ function MyOrder() {
         <h2 className="text-2xl font-semibold">My Order</h2>
       </div>
       <div className="grid justify-center gap-6 overflow-y-auto h-full">
-        {order?.[index]?.products.map((product) => (
+        {order?.at(index)?.products.map((product) => (
           <OrderCard
             key={product.id}
             id={product.id}
