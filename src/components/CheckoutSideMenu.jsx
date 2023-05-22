@@ -27,6 +27,7 @@ function CheckoutSideMenu() {
 
     setOrder([...order, orderToAdd]);
     setCart([]);
+    closeCheckoutSideMenu();
   };
   return (
     <aside
