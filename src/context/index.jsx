@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useState } from "react";
 
 export const ShoppingCartContext = React.createContext();
 
@@ -39,6 +39,23 @@ export const ShoppingCartProvider = function ({ children }) {
     setCart(newCart);
   };
 
+  // Get products
+  const [items, setItems] = React.useState([]);
+  React.useEffect(() => {
+    fetch("https://api.escuelajs.co/api/v1/products")
+      .then((res) => res.json())
+      .then((data) => {
+        setItems(data.map((item) => ({ ...item, quantity: 0 })));
+        console.log(data);
+      });
+  }, []);
+
+  const [searchByTitle, setSearchByTitle] = useState("");
+  const searchedItems = items.filter((item) => {
+    const itemTitle = item.title.toLowerCase();
+    return itemTitle.includes(searchByTitle.toLowerCase());
+  });
+
   // Shopping Cart · Order
   const [order, setOrder] = React.useState([]);
 
@@ -76,6 +93,10 @@ export const ShoppingCartProvider = function ({ children }) {
         closeCheckoutSideMenu,
         order,
         setOrder,
+        items,
+        searchByTitle,
+        setSearchByTitle,
+        searchedItems,
       }}
     >
       {children}
