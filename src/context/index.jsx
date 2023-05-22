@@ -29,6 +29,7 @@ export const ShoppingCartProvider = function ({ children }) {
     setCart(newCart);
   };
 
+  // Shopping Cart · Decrement Product quantity
   const decrementProduct = function (id) {
     const newCart = [...cart];
     const product = newCart.find((prod) => prod.id === id);
@@ -37,6 +38,9 @@ export const ShoppingCartProvider = function ({ children }) {
     else product.quantity--;
     setCart(newCart);
   };
+
+  // Shopping Cart · Order
+  const [order, setOrder] = React.useState([]);
 
   // Product Detail · Show Product
   const [productToShow, setProductToShow] = React.useState({});
@@ -60,6 +64,7 @@ export const ShoppingCartProvider = function ({ children }) {
         decrementProduct,
         counter,
         cart,
+        setCart,
         isProductOpen,
         openProductDetail,
         closeProductDetail,
@@ -69,6 +74,8 @@ export const ShoppingCartProvider = function ({ children }) {
         setIsCheckoutSideMenuOpen,
         openCheckoutSideMenu,
         closeCheckoutSideMenu,
+        order,
+        setOrder,
       }}
     >
       {children}
