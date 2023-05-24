@@ -46,7 +46,6 @@ export const ShoppingCartProvider = function ({ children }) {
       .then((res) => res.json())
       .then((data) => {
         setItems(data.map((item) => ({ ...item, quantity: 0 })));
-        console.log(data);
       });
   }, []);
 
@@ -84,17 +83,6 @@ export const ShoppingCartProvider = function ({ children }) {
       setFilteredItems(filterBy("BY_CATEGORY"));
     if (!searchByTitle && !searchByCategory) setFilteredItems(items);
   }, [items, searchByTitle, searchByCategory]);
-  // const filteredItemsByTitle = items.filter((item) => {
-  //   const itemTitle = item.title.toLowerCase();
-  //   return itemTitle.includes(searchByTitle.toLowerCase());
-  // });
-
-  // // Search by category
-  // const [searchByCategory, setSearchByCategory] = React.useState("");
-  // const filteredItemsByCategory = items.filter((item) => {
-  //   const itemCategory = item.category.name.toLowerCase();
-  //   return itemCategory.includes(searchByCategory.toLowerCase());
-  // });
 
   // Shopping Cart · Order
   const [order, setOrder] = React.useState([]);

@@ -4,7 +4,7 @@ import Card from "../components/Card";
 import Layout from "../components/Layout";
 import LayoutProducts from "../components/LayoutProducts";
 import { ShoppingCartContext } from "../context";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { CogIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 function Home() {
   const { items, searchByTitle, setSearchByTitle, filteredItems } =
@@ -14,7 +14,16 @@ function Home() {
 
   const renderView = function () {
     try {
-      if (!items.length) return <p>Loading...</p>;
+      if (!items.length)
+        return (
+          <CogIcon className="w-1/5 animate-spin col-[1/-1] mx-auto mt-20" />
+        );
+      if (!filteredItems.length)
+        return (
+          <p className="text-2xl col-[1/-1] text-center font-semibold">
+            No items for this search :(
+          </p>
+        );
       return filteredItems.map((item) => <Card key={item.id} data={item} />);
     } catch (err) {
       console.error(err);

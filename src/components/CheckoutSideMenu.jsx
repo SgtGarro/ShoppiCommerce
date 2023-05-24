@@ -15,6 +15,8 @@ function CheckoutSideMenu() {
     deleteProduct,
     incrementProduct,
     decrementProduct,
+    setSearchByTitle,
+    setSearchByCategory,
   } = React.useContext(ShoppingCartContext);
 
   const handleCheckout = function () {
@@ -27,6 +29,8 @@ function CheckoutSideMenu() {
 
     setOrder([...order, orderToAdd]);
     setCart([]);
+    setSearchByTitle("");
+    setSearchByCategory("");
     closeCheckoutSideMenu();
   };
   return (
