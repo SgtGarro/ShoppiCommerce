@@ -7,10 +7,21 @@ import { ShoppingCartContext } from "../context";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 function Home() {
-  const { items, searchedItems, searchByTitle, setSearchByTitle } =
+  const { items, searchByTitle, setSearchByTitle, filteredItems } =
     React.useContext(ShoppingCartContext);
 
   const [isFocusSearch, setIsFocusSearch] = React.useState(false);
+
+  const renderView = function () {
+    try {
+      if (!items.length) return <p>Loading...</p>;
+      return filteredItems.map((item) => <Card key={item.id} data={item} />);
+    } catch (err) {
+      console.error(err);
+      return <p>Something bad happen</p>;
+    }
+  };
+
   return (
     <Layout>
       <div
@@ -33,12 +44,7 @@ function Home() {
           }  w-6 h-6`}
         />
       </div>
-      <LayoutProducts>
-        {!items?.length && <p>Cargando...</p>}
-        {searchedItems?.map((item) => (
-          <Card key={item.id} data={item} />
-        ))}
-      </LayoutProducts>
+      <LayoutProducts>{renderView()}</LayoutProducts>
     </Layout>
   );
 }

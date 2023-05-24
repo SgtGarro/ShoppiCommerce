@@ -67,7 +67,7 @@ function Card({ data }) {
           alt={data.title}
         />
         <span className="absolute left-2 bottom-2 text-sm bg-gray-100 px-3 rounded-md font-bold">
-          {data.categoryName}
+          {data.category.name}
         </span>
         {renderIcon()}
       </figure>

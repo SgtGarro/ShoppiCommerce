@@ -6,6 +6,7 @@ import { ShoppingCartContext } from "../context";
 function Navbar() {
   const activeStyle = "underline underline-offset-4";
   const { counter } = React.useContext(ShoppingCartContext);
+  const { setSearchByCategory } = React.useContext(ShoppingCartContext);
   return (
     <nav className="flex h-16 items-center justify-between px-12 fixed top-0 left-0 w-full bg-white shadow-sm shadow-gray-300  z-50">
       <ul className="flex gap-3 items-center">
@@ -15,6 +16,7 @@ function Navbar() {
         <li>
           <NavLink
             to="/"
+            onClick={() => setSearchByCategory("")}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             All
@@ -23,6 +25,7 @@ function Navbar() {
         <li>
           <NavLink
             to="/clothes"
+            onClick={() => setSearchByCategory("clothes")}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Clothes
@@ -31,6 +34,7 @@ function Navbar() {
         <li>
           <NavLink
             to="/electronics"
+            onClick={() => setSearchByCategory("electronics")}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Electronics
@@ -39,6 +43,7 @@ function Navbar() {
         <li>
           <NavLink
             to="/furnitures"
+            onClick={() => setSearchByCategory("furnitures")}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Furnitures
@@ -47,6 +52,7 @@ function Navbar() {
         <li>
           <NavLink
             to="/toys"
+            onClick={() => setSearchByCategory("toys")}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Toys
@@ -55,6 +61,7 @@ function Navbar() {
         <li>
           <NavLink
             to="/others"
+            onClick={() => setSearchByCategory("others")}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Others

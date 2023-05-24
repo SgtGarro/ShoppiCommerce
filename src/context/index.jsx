@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React from "react";
 
 export const ShoppingCartContext = React.createContext();
 
@@ -50,11 +50,51 @@ export const ShoppingCartProvider = function ({ children }) {
       });
   }, []);
 
-  const [searchByTitle, setSearchByTitle] = useState("");
-  const searchedItems = items.filter((item) => {
-    const itemTitle = item.title.toLowerCase();
-    return itemTitle.includes(searchByTitle.toLowerCase());
-  });
+  // Filtered items
+  const [searchByTitle, setSearchByTitle] = React.useState("");
+  const [searchByCategory, setSearchByCategory] = React.useState("");
+
+  const [filteredItems, setFilteredItems] = React.useState([]);
+
+  const filterByTitle = function (items) {
+    return items.filter((item) =>
+      item.title.toLowerCase().includes(searchByTitle.toLowerCase())
+    );
+  };
+
+  const filterByCategory = function (items) {
+    return items.filter((item) =>
+      item.category.name.toLowerCase().includes(searchByCategory.toLowerCase())
+    );
+  };
+
+  const filterBy = function (searchType) {
+    if (searchType === "BY_TITLE") return filterByTitle(items);
+    if (searchType === "BY_CATEGORY") return filterByCategory(items);
+    if (searchType === "BY_CATEGORY_AND_TITLE")
+      return filterByTitle(filterByCategory(items));
+  };
+
+  React.useEffect(() => {
+    if (searchByTitle && searchByCategory)
+      setFilteredItems(filterBy("BY_CATEGORY_AND_TITLE"));
+    if (searchByTitle && !searchByCategory)
+      setFilteredItems(filterBy("BY_TITLE"));
+    if (!searchByTitle && searchByCategory)
+      setFilteredItems(filterBy("BY_CATEGORY"));
+    if (!searchByTitle && !searchByCategory) setFilteredItems(items);
+  }, [items, searchByTitle, searchByCategory]);
+  // const filteredItemsByTitle = items.filter((item) => {
+  //   const itemTitle = item.title.toLowerCase();
+  //   return itemTitle.includes(searchByTitle.toLowerCase());
+  // });
+
+  // // Search by category
+  // const [searchByCategory, setSearchByCategory] = React.useState("");
+  // const filteredItemsByCategory = items.filter((item) => {
+  //   const itemCategory = item.category.name.toLowerCase();
+  //   return itemCategory.includes(searchByCategory.toLowerCase());
+  // });
 
   // Shopping Cart · Order
   const [order, setOrder] = React.useState([]);
@@ -96,7 +136,9 @@ export const ShoppingCartProvider = function ({ children }) {
         items,
         searchByTitle,
         setSearchByTitle,
-        searchedItems,
+        searchByCategory,
+        setSearchByCategory,
+        filteredItems,
       }}
     >
       {children}
