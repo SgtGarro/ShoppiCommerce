@@ -5,8 +5,8 @@ import { ShoppingCartContext } from "../context";
 
 function Navbar() {
   const activeStyle = "underline underline-offset-4";
-  const { counter } = React.useContext(ShoppingCartContext);
-  const { setSearchByCategory } = React.useContext(ShoppingCartContext);
+  const { counter, setSearchByCategory, setIsCheckoutSideMenuOpen } =
+    React.useContext(ShoppingCartContext);
   return (
     <nav className="flex h-16 items-center justify-between px-12 fixed top-0 left-0 w-full bg-white shadow-sm shadow-gray-300  z-50">
       <ul className="flex gap-3 items-center">
@@ -94,7 +94,10 @@ function Navbar() {
             Sign in
           </NavLink>
         </li>
-        <li className="relative">
+        <li
+          className="relative cursor-pointer"
+          onClick={() => setIsCheckoutSideMenuOpen(true)}
+        >
           <ShoppingBagIcon className="w-6 h-6" />
           <span className="absolute top-0 right-0 text-white bg-[#495057] rounded-full text-sm w-5 h-5 grid place-items-center leading-none translate-x-1/2 -translate-y-1/3">
             {counter}
